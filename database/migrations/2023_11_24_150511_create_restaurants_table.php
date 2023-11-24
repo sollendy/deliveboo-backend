@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name', 100);
-            $table->address();
-            $table->piva();
-            $table->photo();
+            $table->string("address");
+            $table->string("piva");
+            $table->text("photo");
             $table->timestamps();
         });
     }

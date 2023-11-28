@@ -24,6 +24,8 @@ class DishSeeder extends Seeder
             $newDish->ingredients = $dish["ingredients"];
             $newDish->visible = rand(0, 1);
             $newDish->price = $dish["price"];
+
+            $newDish->save();
         }
     }
 }

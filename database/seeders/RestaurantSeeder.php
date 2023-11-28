@@ -26,6 +26,8 @@ class RestaurantSeeder extends Seeder
             $newRestaurant->photo = $restaurant['photo'];
             $newRestaurant->piva = $faker->numerify("###########");
             $newRestaurant->save();
+
         }
+
     }
 }

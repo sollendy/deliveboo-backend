@@ -25,11 +25,6 @@ return [
         'photo' => 'https://qul.imgix.net/756bdd59-c1dd-4669-947b-83e8eb59bdeb/392449_sld.jpg'
     ],
 
-    [
-        'name' => "ZenFusion: Gusti Orientali",
-        'address' => "Via Zenzero, 42, Roma",
-        'photo' => 'https://qul.imgix.net/756bdd59-c1dd-4669-947b-83e8eb59bdeb/392449_sld.jpg'
-    ],
 
     [
         'name' => "Pizzapoli",

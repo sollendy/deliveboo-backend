@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Restaurant;
+use Faker\Factory as Faker;
 
 class RestaurantSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class RestaurantSeeder extends Seeder
     public function run(): void
     {
         $restaurants = config("restaurantsDB");
+        $faker = Faker::create();
+
 
         foreach ($restaurants as $index => $restaurant) {
             $newRestaurant = new Restaurant();
@@ -21,6 +24,7 @@ class RestaurantSeeder extends Seeder
             $newRestaurant->name = $restaurant['name'];
             $newRestaurant->address = $restaurant['address'];
             $newRestaurant->photo = $restaurant['photo'];
+            $newRestaurant->piva = $faker->numerify("###########");
             $newRestaurant->save();
         }
     }

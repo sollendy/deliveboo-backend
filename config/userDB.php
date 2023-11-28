@@ -36,10 +36,4 @@ return [
         'password' => 'admin'
     ],
 
-    [
-        'name' => 'Paolo',
-        'last_name' => 'Milano',
-        'email' => 'paolomilano@gmail.com',
-        'password' => 'admin'
-    ]
 ];

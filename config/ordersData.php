@@ -8,7 +8,8 @@ return [
         "address" => "Via Roma 10, Casalnuovo di Napoli",
         "phone" => "0811234567",
         "status" => "Pagato",
-        "total_price" => 50.00
+        "total_price" => 33.70,
+        "dishes" => [1,10]
     ],
     [
         "name" => "Luca",
@@ -16,7 +17,8 @@ return [
         "address" => "Via del Corso 25, Roma",
         "phone" => "0667890123",
         "status" => "In attesa",
-        "total_price" => 75.50
+        "total_price" => 27.49,
+        "dishes" => [6,8]
     ],
     [
         "name" => "Giulia",
@@ -24,7 +26,8 @@ return [
         "address" => "Via Veneto 42, Roma",
         "phone" => "0665432198",
         "status" => "Spedito",
-        "total_price" => 120.75
+        "total_price" => 13.75,
+        "dishes" => [7]
     ],
     [
         "name" => "Antonio",
@@ -32,7 +35,8 @@ return [
         "address" => "Piazza Navona 8, Roma",
         "phone" => "0661122334",
         "status" => "Pagato",
-        "total_price" => 90.25
+        "total_price" => 38.00,
+        "dishes" => [3,4]
     ],
 
     [
@@ -41,7 +45,8 @@ return [
         "address" => "Via Appia 56, Roma",
         "phone" => "0669876543",
         "status" => "In attesa di pagamento",
-        "total_price" => 60.80
+        "total_price" => 11.99,
+        "dishes" => [2]
     ],
 
     [
@@ -50,15 +55,8 @@ return [
         "address" => "Via Tiburtina 78, Roma",
         "phone" => "0678765432",
         "status" => "In lavorazione",
-        "total_price" => 95.20
-    ],
+        "total_price" => 52.95,
+        "dishes" => [3,4,5]
 
-    [
-        "name" => "Giovanni",
-        "last_name" => "Ferrari",
-        "address" => "Via Salaria 33, Roma",
-        "phone" => "0671122334",
-        "status" => "Consegnato",
-        "total_price" => 110.50
     ]
 ];

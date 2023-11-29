@@ -14,6 +14,8 @@ class RestaurantTypeSeeder extends Seeder
      */
     public function run(): void
     {
+
+
         $restaurant = Restaurant::find(1);
         $restaurant->types()->sync([1]);
 

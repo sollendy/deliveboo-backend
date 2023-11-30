@@ -33,6 +33,11 @@
                     <p>{{ $dish->description }}</p>
                     <p> <span class="fw-semibold">Ingredients:</span> {{ $dish->ingredients }}</p>
                     <p>{{ $dish->price }} €</p>
+                    <button class="w-25 justify-self-start rounded">
+                        <a class='text-decoration-none w-100' href="{{ route('admin.restaurant.edit', $single_restaurant) }}">
+                            Modifica
+                        </a>
+                    </button>
                 @endforeach
         </div>
 </div>

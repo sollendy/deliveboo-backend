@@ -7,6 +7,7 @@ use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DishValidation;
+use App\Http\Requests\UpdateDishValidation;
 
 class RestaurantController extends Controller
 {
@@ -58,17 +59,23 @@ class RestaurantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(restaurant $restaurant)
+    public function edit($id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        return view("admin.restaurant.edit", compact("dish"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, restaurant $restaurant)
+    public function update(UpdateDishValidation $request, $id)
     {
-        //
+        $data = $request->all();
+        $dish = Dish::findOrFail($id);
+
+        $dish->update($data);
+
+        return redirect()->route('admin.restaurant.index')->with('fatto','Piatto modificato con successo.');
     }
 
     /**

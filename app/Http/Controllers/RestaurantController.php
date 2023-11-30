@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DishValidation;
 
 class RestaurantController extends Controller
 {
@@ -14,7 +16,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $restaurant = Restaurant::where("user_id", $user_id);
+        $restaurant = Restaurant::where("user_id", $user_id)->with("dishes")->get();
         return view("admin.restaurant.index", compact("restaurant"));
     }
 
@@ -23,15 +25,26 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.restaurant.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DishValidation $request)
     {
-        //
+
+        $newDish = new Dish ();
+
+        $data = $request->validated();
+        $newDish->fill($data);
+
+        $newDish->restaurant_id = $request->input('restaurant_id');
+
+        $newDish->save();
+
+        return redirect()->route('admin.restaurant.index')->with('Success','Dish created successfully.');
+
     }
 
     /**

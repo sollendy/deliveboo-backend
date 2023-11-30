@@ -24,5 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [RestaurantController::class, 'index'])->name('restaurants');
+    Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
+    Route::get('/create', [RestaurantController::class, 'create'])->name('restaurant.create');
+    Route::post('/create', [RestaurantController::class, 'store'])->name('restaurant.store');
 });

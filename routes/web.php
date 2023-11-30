@@ -27,8 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
     Route::get('/create', [RestaurantController::class, 'create'])->name('restaurant.create');
-    Route::get('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
     Route::post('/create', [RestaurantController::class, 'store'])->name('restaurant.store');
-    Route::patch('/update/{id}', [RestaurantController::class, 'update'])->name('restaurant.update');
-    //Route::put('/admin/{id}',[AdminBeachResortController::class, 'update'])->name('admin.beachresorts.update');
+    Route::get('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
+    Route::put('/update/{id}', [RestaurantController::class, 'update'])->name('restaurant.update');
+    Route::delete('/{id}', [RestaurantController::class, 'destroy'])->name('restaurant.destroy');
 });

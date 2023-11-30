@@ -29,15 +29,13 @@
 <form action="{{ route('admin.restaurant.update', $dish->id) }}" method="POST">
 
     @csrf
-    @method('PATCH')
+    @method('PUT')
 
      <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-12">
 
             <div class="form-group">
-
-                <input type="number" name="dish_id" class="form-control" placeholder="ID pietanza" value="{{  old('dish_id', $dish->id) }}">
 
                 <input type="text" name="name" class="form-control" placeholder="Nome" value="{{  old('name', $dish->name) }}">
 

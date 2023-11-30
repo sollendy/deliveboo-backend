@@ -44,7 +44,7 @@ class RestaurantController extends Controller
 
         $newDish->save();
 
-        return redirect()->route('admin.restaurant.index')->with('Success','Dish created successfully.');
+        return redirect()->route('admin.restaurant.index')->with('created',$newDish->name);
 
     }
 
@@ -61,8 +61,9 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        $dish = Dish::findOrFail($id);
-        return view("admin.restaurant.edit", compact("dish"));
+        $restaurant_id = Auth::user()->id;
+        $dish = Dish::where('id', $id)->where('restaurant_id', $restaurant_id)->firstOrFail();
+        return view("admin.restaurant.edit", compact("dish", "restaurant_id"));
     }
 
     /**
@@ -74,15 +75,18 @@ class RestaurantController extends Controller
         $dish = Dish::findOrFail($id);
 
         $dish->update($data);
-
-        return redirect()->route('admin.restaurant.index')->with('fatto','Piatto modificato con successo.');
+        return redirect()->route('admin.restaurant.index')->with('update',  $dish->name);
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(restaurant $restaurant)
+    public function destroy($id)
     {
-        //
+        $dish = Dish::findOrFail($id);
+        $dish->delete();
+
+        return redirect()->route('admin.restaurant.index')->with('delete', $dish->name);
     }
 }

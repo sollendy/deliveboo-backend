@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-  
 
-@section('content')   
+
+@section('content')
 
 @if ($errors->any())
 
@@ -24,12 +24,12 @@
 
 @endif
 
-   
+
 
 <form action="{{ route('admin.restaurant.store') }}" method="POST">
 
     @csrf
-  
+
 
      <div class="row">
 
@@ -37,17 +37,15 @@
 
             <div class="form-group">
 
-                <input type="number" name="restaurant_id" class="form-control" placeholder="restaurant_id">
-
                 <input type="text" name="name" class="form-control" placeholder="Name">
 
                 <textarea name="description" id="description" cols="30" rows="10" placeholder="description"></textarea>
 
                 <input type="text" name="ingredients" class="form-control" placeholder="ingredients">
+                <label for="visible" class="ms-1">Visibile</label>
+                <input type="checkbox" id="visible" name="visible"  placeholder="visible">
 
-                <input type="text" name="visible" class="form-control" placeholder="visible">
-
-                <input type="number" name="price" class="form-control" placeholder="price">
+                <input type="number" name="price" class="form-control" min="0" value="0.00" step="0.01" placeholder="price">
 
             </div>
 
@@ -61,7 +59,7 @@
 
     </div>
 
-   
+
 
 </form>
 

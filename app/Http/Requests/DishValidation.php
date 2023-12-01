@@ -22,11 +22,10 @@ class DishValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'restaurant_id' => 'required|exists:restaurants,id,user_id,' . auth()->id(),
-            'name' => 'required|min:5|max:30',
+            'name' => 'required|min:5|max:100',
             'description' => 'nullable',
-            'ingredients' => 'required',
-            'visible' => 'required|boolean',
+            'ingredients' => 'required|min:3',
+            'visible' => 'nullable',
             'price' => 'required|numeric|min:0',
         ];
     }
@@ -34,9 +33,14 @@ class DishValidation extends FormRequest
     public function messages() : array
     {
         return [
+            'name.required' => "Il prodotto deve avere un nome",
+            'name.min' => "Il prodotto deve essere di almeno :min caratteri",
             'restaurant_id.exists' => 'Il ristorante selezionato non appartiene all\'utente corrente.',
             'visible.boolean' => 'Il campo visibile deve essere vero o falso.',
             'price.min' => 'Il prezzo deve essere almeno :min.',
+            'price.decimal' => "Il prezzo è in formato errato",
+            'ingredients.required' => 'Devi inserire almeno un ingrediente',
+            'ingredients.min' => "Il campo ingredienti deve essere almeno di :min caratteri"
         ];
     }
 }

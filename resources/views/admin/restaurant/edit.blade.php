@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-  
 
-@section('content')   
+
+@section('content')
 
 @if ($errors->any())
 
@@ -24,7 +24,7 @@
 
 @endif
 
-   
+
 
 <form action="{{ route('admin.restaurant.update', $dish->id) }}" method="POST">
 
@@ -43,9 +43,13 @@
 
                 <input type="text" name="ingredients" class="form-control" placeholder="ingredienti" value="{{  old('ingredients', $dish->ingredients) }}">
 
-                <input type="text" name="visible" class="form-control" placeholder="visibile" value="">
+                <label for="visible" class="ms-1">Visibile</label>
+                <input type="checkbox" @if ($dish->visible)
+                    checked
+                @endif
+                 id="visible" name="visible"  placeholder="visible">
 
-                <input type="number" name="price" class="form-control" placeholder="prezzo" value="{{  old('price', $dish->price) }}">
+                <input type="number" name="price" class="form-control" min="0" step="0.01" placeholder="price" value="{{  old('price', $dish->price) }}">
 
             </div>
 
@@ -59,7 +63,7 @@
 
     </div>
 
-   
+
 
 </form>
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     protected $table = 'dishes';
-    protected $fillable = ['restaurant_id','name','description','ingredients' ,'visible', 'price'];
+    protected $fillable = ['restaurant_id','name','description','ingredients', 'price'];
 
     use HasFactory;
     public function restaurant() {

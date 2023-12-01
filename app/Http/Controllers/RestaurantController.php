@@ -39,8 +39,15 @@ class RestaurantController extends Controller
 
         $data = $request->validated();
         $newDish->fill($data);
-
-        $newDish->restaurant_id = $request->input('restaurant_id');
+        if ($request->has('visible')) {
+            $newDish->visible = 1;
+        }
+        else {
+            $newDish->visible = 0;
+        }
+        $user_id = Auth::user()->id;
+        $restaurant = Restaurant::where("user_id", $user_id)->first();
+        $newDish->restaurant_id = $restaurant->id;
 
         $newDish->save();
 
@@ -74,10 +81,17 @@ class RestaurantController extends Controller
         $data = $request->all();
         $dish = Dish::findOrFail($id);
 
+        if ($request->has('visible')) {
+            $dish->visible = 1;
+        }
+        else {
+            $dish->visible = 0;
+        }
+
         $dish->update($data);
         return redirect()->route('admin.restaurant.index')->with('update',  $dish->name);
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

@@ -22,11 +22,25 @@ class UpdateDishValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:100',
-            'description' => 'required|max:200',
-            'ingredients' => 'required|string',
-            'visible' => 'required|boolean',
-            'price' => 'required|numeric',
+            'name' => 'required|min:5|max:100',
+            'description' => 'nullable',
+            'ingredients' => 'required|min:3',
+            'visible' => 'nullable',
+            'price' => 'required|numeric|min:0',
+        ];
+    }
+
+    public function messages() : array
+    {
+        return [
+            'name.required' => "Il prodotto deve avere un nome",
+            'name.min' => "Il prodotto deve essere di almeno :min caratteri",
+            'restaurant_id.exists' => 'Il ristorante selezionato non appartiene all\'utente corrente.',
+            'visible.boolean' => 'Il campo visibile deve essere vero o falso.',
+            'price.min' => 'Il prezzo deve essere almeno :min.',
+            'price.decimal' => "Il prezzo è in formato errato",
+            'ingredients.required' => 'Devi inserire almeno un ingrediente',
+            'ingredients.min' => "Il campo ingredienti deve essere almeno di :min caratteri"
         ];
     }
 }

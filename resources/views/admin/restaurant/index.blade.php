@@ -30,7 +30,7 @@
                     <div class="card__subtitle">{{ $single_restaurant->address }}</div>
                     <div class="card__wrapper pb-4">
                         <button class="card__btn">
-                            <a class="text-black onhover text-decoration-none" href="{{ route('admin.restaurant.create') }}">
+                            <a class="text-black onhover text-decoration-none" href="{{ route('admin.dish.create') }}">
                                Add New Dish
                             </a>
                         </button>

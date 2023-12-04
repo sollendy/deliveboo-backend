@@ -23,10 +23,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register', [RestaurantController::class, 'create'])->name('register');
+Route::post('/register', [RestaurantController::class, 'store'])->name('register.store');
+
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
-    Route::get('/create', [RestaurantController::class, 'create'])->name('restaurant.create');
     Route::post('/create', [RestaurantController::class, 'store'])->name('restaurant.store');
     Route::get('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
     Route::put('/update/{id}', [RestaurantController::class, 'update'])->name('restaurant.update');

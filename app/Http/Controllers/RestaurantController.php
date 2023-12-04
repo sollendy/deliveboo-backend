@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
 use App\Models\Dish;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\DishValidation;
+use App\Http\Requests\RestaurantRequest;
 use App\Http\Requests\UpdateDishValidation;
 
 class RestaurantController extends Controller
@@ -16,7 +18,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-
+        $user_id = Auth::user()->id;
+        $restaurant = Restaurant::where("user_id", $user_id)->with("dishes")->get();
+        return view("admin.restaurant.index", compact("restaurant"));
     }
 
     /**
@@ -24,15 +28,40 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-
+        return view("admin.restaurant.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DishValidation $request)
+    public function store(RestaurantRequest $request)
     {
-        //
+
+        //Creo prima l'user
+        $newUser = new User();
+        $newUser->name = $request->validated('username');
+        $newUser->email = $request->validated('email');
+        $newUser->password = Hash::make($request->validated('password'));
+        $newUser->save();
+
+        //Ristorante collegato all'utente
+
+        $newRestaurant = new Restaurant();
+        $newRestaurant->user_id = $newUser->id;
+        $newRestaurant->name = $request->validated('restaurant-name');
+        $newRestaurant->address = $request->validated('address');
+        $newRestaurant->piva = $request->validated('piva');
+        $newRestaurant->photo = 'https://media-assets.lacucinaitaliana.it/photos/61fabd448f675ad335f0d998/master/pass/la-rina-new-york.jpg';
+        $newRestaurant->save();
+        Auth::login($newUser);
+        return redirect()->route('admin.restaurant.index');
+
+
+
+
+
+
+
     }
 
     /**

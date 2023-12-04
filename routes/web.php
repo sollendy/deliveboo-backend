@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\RestaurantController;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +24,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register', [RestaurantController::class, 'create'])->name('register');
+Route::post('/register', [RestaurantController::class, 'store'])->name('register.store');
+
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [DishController::class, 'index'])->name('restaurant.index');
+    Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
     Route::get('/create', [DishController::class, 'create'])->name('restaurant.create');
     Route::post('/create', [DishController::class, 'store'])->name('restaurant.store');
     Route::get('/edit/{id}', [DishController::class, 'edit'])->name('restaurant.edit');

@@ -32,9 +32,7 @@ class RestaurantController extends Controller
      */
     public function store(DishValidation $request)
     {
-
-
-
+        //
     }
 
     /**

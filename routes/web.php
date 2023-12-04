@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\DishController;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,10 +25,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
-    Route::get('/create', [RestaurantController::class, 'create'])->name('restaurant.create');
-    Route::post('/create', [RestaurantController::class, 'store'])->name('restaurant.store');
-    Route::get('/edit/{id}', [RestaurantController::class, 'edit'])->name('restaurant.edit');
-    Route::put('/update/{id}', [RestaurantController::class, 'update'])->name('restaurant.update');
-    Route::delete('/{id}', [RestaurantController::class, 'destroy'])->name('restaurant.destroy');
+    Route::get('/', [DishController::class, 'index'])->name('restaurant.index');
+    Route::get('/create', [DishController::class, 'create'])->name('restaurant.create');
+    Route::post('/create', [DishController::class, 'store'])->name('restaurant.store');
+    Route::get('/edit/{id}', [DishController::class, 'edit'])->name('restaurant.edit');
+    Route::put('/update/{id}', [DishController::class, 'update'])->name('restaurant.update');
+    Route::delete('/{id}', [DishController::class, 'destroy'])->name('restaurant.destroy');
+    /// commento
 });

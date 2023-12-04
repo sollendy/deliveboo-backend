@@ -8,7 +8,7 @@
 
     <div class="alert alert-danger">
 
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <strong>Whoops!</strong> Qualcosa è andato storto.<br><br>
 
         <ul>
 
@@ -37,11 +37,11 @@
 
             <div class="form-group">
 
-                <input type="text" name="name" class="form-control" placeholder="Nome" value="{{  old('name', $dish->name) }}">
+                <input type="text" name="name" class="form-control" placeholder="Nome" value="{{  old('name', $dish->name) }}" required minlength="5" maxlength="100">
 
                 <textarea name="description" id="description" cols="30" rows="10" placeholder="descrizione">{{  old('description', $dish->description)}}</textarea>
 
-                <input type="text" name="ingredients" class="form-control" placeholder="ingredienti" value="{{  old('ingredients', $dish->ingredients) }}">
+                <input type="text" name="ingredients" class="form-control" placeholder="ingredienti" value="{{  old('ingredients', $dish->ingredients) }}" required minlength="20">
 
                 <label for="visible" class="ms-1">Visibile</label>
                 <input type="checkbox" @if ($dish->visible)
@@ -49,7 +49,7 @@
                 @endif
                  id="visible" name="visible"  placeholder="visible">
 
-                <input type="number" name="price" class="form-control" min="0" step="0.01" placeholder="price" value="{{  old('price', $dish->price) }}">
+                <input type="number" name="price" class="form-control" min="0" step="0.01" placeholder="price" value="{{  old('price', $dish->price) }}" required>
 
             </div>
 

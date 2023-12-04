@@ -10,15 +10,15 @@
             </h1>
         @if(session ('delete'))
             <div class="col-12 col-md-10 col-lg-11 alert alert-warning">
-                The Dish {{ session('delete') }}  has been deleted  
+                The Dish {{ session('delete') }}  has been deleted
             </div>
         @elseif(session('update'))
         <div class="col-12 col-md-10 col-lg-11 alert alert-primary">
-                The Dish {{ session('update') }}  has been updated  
+                The Dish {{ session('update') }}  has been updated
         </div>
         @elseif(session('created'))
         <div class="col-12 col-md-10 col-lg-11 alert alert-success">
-                The Dish {{ session('created') }}  has been created 
+                The Dish {{ session('created') }}  has been created
         </div>
         @endif
             <div class="card p-0  col-11 col-md-8">
@@ -30,7 +30,7 @@
                     <div class="card__subtitle">{{ $single_restaurant->address }}</div>
                     <div class="card__wrapper pb-4">
                         <button class="card__btn">
-                            <a class="text-black text-decoration-none" href="{{ route('admin.restaurant.create') }}">
+                            <a class="text-black onhover text-decoration-none" href="{{ route('admin.restaurant.create') }}">
                                Add New Dish
                             </a>
                         </button>
@@ -50,7 +50,7 @@
                         <a class='text-decoration-none w-100' href="{{ route('admin.restaurant.edit', ['id' => $dish->id]) }}">
                             Modifica
                         </a>
-                    <form class='delete-button' action="{{ route ('admin.restaurant.destroy', ['id' => $dish->id]) }}" method='POST'> 
+                    <form class='delete-button' action="{{ route ('admin.restaurant.destroy', ['id' => $dish->id]) }}" method='POST'>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="w-25 justify-self-start rounded">

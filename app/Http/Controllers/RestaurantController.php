@@ -16,9 +16,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $restaurant = Restaurant::where("user_id", $user_id)->with("dishes")->get();
-        return view("admin.restaurant.index", compact("restaurant"));
+
     }
 
     /**
@@ -26,7 +24,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view("admin.restaurant.create");
+
     }
 
     /**
@@ -35,23 +33,7 @@ class RestaurantController extends Controller
     public function store(DishValidation $request)
     {
 
-        $newDish = new Dish ();
 
-        $data = $request->validated();
-        $newDish->fill($data);
-        if ($request->has('visible')) {
-            $newDish->visible = 1;
-        }
-        else {
-            $newDish->visible = 0;
-        }
-        $user_id = Auth::user()->id;
-        $restaurant = Restaurant::where("user_id", $user_id)->first();
-        $newDish->restaurant_id = $restaurant->id;
-
-        $newDish->save();
-
-        return redirect()->route('admin.restaurant.index')->with('created',$newDish->name);
 
     }
 
@@ -68,9 +50,7 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        $restaurant_id = Auth::user()->id;
-        $dish = Dish::where('id', $id)->where('restaurant_id', $restaurant_id)->firstOrFail();
-        return view("admin.restaurant.edit", compact("dish", "restaurant_id"));
+
     }
 
     /**
@@ -78,18 +58,7 @@ class RestaurantController extends Controller
      */
     public function update(UpdateDishValidation $request, $id)
     {
-        $data = $request->all();
-        $dish = Dish::findOrFail($id);
 
-        if ($request->has('visible')) {
-            $dish->visible = 1;
-        }
-        else {
-            $dish->visible = 0;
-        }
-
-        $dish->update($data);
-        return redirect()->route('admin.restaurant.index')->with('update',  $dish->name);
     }
 
 
@@ -98,9 +67,6 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        $dish = Dish::findOrFail($id);
-        $dish->delete();
 
-        return redirect()->route('admin.restaurant.index')->with('delete', $dish->name);
     }
 }

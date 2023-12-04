@@ -41,7 +41,7 @@
 
                 <textarea name="description" id="description" cols="30" rows="10" minlength="50" placeholder="description"></textarea>
 
-                <input type="text" name="ingredients" class="form-control" placeholder="ingredients" required min="25">
+                <input type="text" name="ingredients" class="form-control" placeholder="ingredients" required minlength="25">
                 <label for="visible" class="ms-1">Visibile</label>
                 <input type="checkbox" id="visible" name="visible"  placeholder="visible">
 

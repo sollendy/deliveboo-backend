@@ -39,6 +39,7 @@ class RestaurantController extends Controller
 
         //Creo prima l'user
         $newUser = new User();
+        $newUser->name = $request->validated('username');
         $newUser->email = $request->validated('email');
         $newUser->password = Hash::make($request->validated('password'));
         $newUser->save();
@@ -52,6 +53,7 @@ class RestaurantController extends Controller
         $newRestaurant->piva = $request->validated('piva');
         $newRestaurant->photo = 'https://media-assets.lacucinaitaliana.it/photos/61fabd448f675ad335f0d998/master/pass/la-rina-new-york.jpg';
         $newRestaurant->save();
+        Auth::login($newUser);
         return redirect()->route('admin.restaurant.index');
 
 

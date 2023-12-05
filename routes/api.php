@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\GuestController;
+// use App\Models\Dish;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get("/restaurants", [GuestController::class, 'index'])->name('restaurant.index');
+    // Route::get('/posts', [ApiPostController::class, 'index'])->name('api.posts.index');
+    // Route::get('/posts/{post}', [ApiPostController::class, 'show'])->name('api.posts.show');
+    // Route::post('/contact-form', [ApiLeadController::class, 'store'])->name('api.contact-form');
+// Route::get('/posts', [ ApiPostController::class, 'index' ])->name('api.posts.index');

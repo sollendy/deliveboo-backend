@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('img/logo_deliveboo-03.png') }}" type="image/x-icon">
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -74,9 +78,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
+    @yield('custom-scripts-tail')
 </body>
 </html>

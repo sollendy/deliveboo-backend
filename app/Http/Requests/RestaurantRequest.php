@@ -27,7 +27,8 @@ class RestaurantRequest extends FormRequest
             'piva' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required|min:8',
-            'username' => 'required'
+            'username' => 'required',
+            'photo' => 'nullable|image'
         ];
     }
 
@@ -44,7 +45,9 @@ class RestaurantRequest extends FormRequest
             'password.required' => 'Devi inserire una password',
             'password.min' => 'Devi una password di almeno :min caratteri',
             'piva.numeric' => 'La partita IVA non può contenere caratteri non numerici',
-            'username.required' => "L'username è richiesto"
+            'username.required' => "L'username è richiesto",
+            'photo.image' => 'Puoi caricare solo file immagini'
+
         ];
     }
 }

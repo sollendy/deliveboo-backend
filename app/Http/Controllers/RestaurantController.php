@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RestaurantRequest;
 use App\Http\Requests\UpdateDishValidation;
 
@@ -45,13 +46,14 @@ class RestaurantController extends Controller
         $newUser->save();
 
         //Ristorante collegato all'utente
+        $photoPath = asset('storage') . '/' . Storage::disk('public')->put('uploads', $request->validated('photo'));
 
         $newRestaurant = new Restaurant();
         $newRestaurant->user_id = $newUser->id;
         $newRestaurant->name = $request->validated('restaurant-name');
         $newRestaurant->address = $request->validated('address');
         $newRestaurant->piva = $request->validated('piva');
-        $newRestaurant->photo = 'https://media-assets.lacucinaitaliana.it/photos/61fabd448f675ad335f0d998/master/pass/la-rina-new-york.jpg';
+        $newRestaurant->photo = $photoPath;
         $newRestaurant->save();
         Auth::login($newUser);
         return redirect()->route('admin.restaurant.index');

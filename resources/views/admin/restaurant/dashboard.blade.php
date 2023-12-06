@@ -32,16 +32,25 @@
 
     <!-- Dashboard -->
 
-        <div class="dashboard pt-5 col-12 col-md-10 col-lg-10 bg-secondary text-white">
+        <div class="dashboard pt-5 col-12 col-md-10 col-lg-10 text-white">
             <!-- Main content area for the dashboard -->
-            <h1>Dashboard</h1>
+            <h1 class="text-black">Dashboard</h1>
             <div class="row">
 
                 <div class="col-md-9">
                     <!-- GRAFICO -->
-                    <canvas id="myChart" height="170">
+                    <canvas id="myChart" class="bg-transparent rounded mb-3 p-4" height="160">
                                         
                    </canvas>
+
+                   <div class="col-md-3">
+                    <!-- Pulsanti di selezione -->
+                    <div class="btn-group">
+                        <button class="btn btn-primary me-3" onclick="changeChart('orders')">Ordini</button>
+                        <button class="btn btn-primary" onclick="changeChart('sales')">Vendite</button>
+                    </div>
+                </div>
+
                 </div>
 
                 <div class="col-md-3 bg-black">
@@ -73,52 +82,78 @@
 <script>
   const ctx = document.getElementById('myChart');
 
+  let myChart = null
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['1 star','2 stars','3 stars','4 stars','5 stars'],
-      datasets: [{
-        label: 'Feedback From Customers',
-        data: [{{"1"}}, {{ "2"}}, {{"3"}}, {{"4"}},{{"5"}}],
-        backgroundColor: ['rgb(112, 0, 11,0.3)', 'rgb(112, 0, 11,0.4)', 'rgb(112, 0, 11,0.6)', 'rgb(112, 0, 11,0.7)','rgb(112, 0, 11,0.9)'],
-        borderColor:['rgb(112, 0, 11,0.3)', 'rgb(112, 0, 11,0.4)', 'rgb(112, 0, 11,0.6)', 'rgb(112, 0, 11,0.7)','rgb(112, 0, 11,0.9)'],
-        borderWidth: 2,
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          title:{
-            display: true,
-            text: 'Range',
-            color:'white'
-          },
-          min: 0,
-          max: 10,
-          grid: {
-                color: 'rgba(0, 0, 0, 0.2)' // Cambia il colore della griglia
-            },
-            ticks: {
-                color: 'white',
-            }
-        },
-        x:{
-            ticks: {
-                color: 'white',
-            }
-        }
-      },
-      plugins:{
-        legend:{
-            labels:{
-                color:'white',
-            }
-        }
-      },
-      responsive:true,
-      maintainAspectRatio: true,
+  // Dati predefiniti per ordini
+  const ordersData = [
+    { x: 'Gennaio'},
+    { x: 'Febbraio'},
+    { x: 'Marzo'},
+    { x: 'Aprile'},
+    { x: 'Maggio'},
+    { x: 'Giugno'},
+    { x: 'Luglio'},
+    { x: 'Agosto'},
+    { x: 'Settembre'},
+    { x: 'Ottobre'},
+    { x: 'Novembre'},
+    { x: 'Dicembre'}
+  ];
+
+  // Dati predefiniti per vendite
+  const salesData = [
+    { x: 'Gennaio'},
+    { x: 'Febbraio'},
+    { x: 'Marzo'},
+    { x: 'Aprile'},
+    { x: 'Maggio'},
+    { x: 'Giugno'},
+    { x: 'Luglio'},
+    { x: 'Agosto'},
+    { x: 'Settembre'},
+    { x: 'Ottobre'},
+    { x: 'Novembre'},
+    { x: 'Dicembre'}
+  ];
+
+  // Funzione per cambiare il grafico tra ordini e vendite
+  function changeChart(chartType) {
+
+    if (myChart !== null) {
+    myChart.destroy();
     }
-  });
+
+    myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        datasets: [{
+          label: chartType === 'orders' ? 'Ordini' : 'Vendite',
+          data: chartType === 'orders' ? ordersData : salesData,
+          backgroundColor: ['rgb(0, 0, 255)', 'rgb(112, 0, 11,0.4)', 'rgb(112, 0, 11,0.6)', 'rgb(112, 0, 11,0.7)', 'rgb(112, 0, 11,0.9)'],
+          borderColor: ['rgb(0, 0, 255)', 'rgb(112, 0, 11,0.4)', 'rgb(112, 0, 11,0.6)', 'rgb(112, 0, 11,0.7)', 'rgb(112, 0, 11,0.9)'],
+          borderWidth: 2,
+        }]
+      },
+      options: {
+        scales:{
+            y:{
+                min:2013,
+                max:2023
+            },
+        },
+        type:"time",
+        time:{
+            unit: 'year', // Specifica l'unità temporale (anno)
+            displayFormats: {
+            year: 'YYYY' // Formato di visualizzazione dell'anno
+          }
+        }
+      }
+    });
+  }
+
+  changeChart('orders');
+  changeChart('sales');
+
 </script>
 @endsection

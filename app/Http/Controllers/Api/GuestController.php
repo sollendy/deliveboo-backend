@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\Type;
 
@@ -17,6 +18,9 @@ class GuestController extends Controller
             $restaurants = Restaurant::with(['types'])->paginate(20);
         }
 
+        foreach ($restaurants as $restaurant) {
+            $restaurant->makeHidden(['created_at', 'updated_at', 'user_id']);
+        }
         return response()->json([
             'success'=>true,
             'results'=>$restaurants,
@@ -31,5 +35,19 @@ class GuestController extends Controller
             'success' => true,
             'types' => $typologies,
         ]);
+    }
+
+    public function dishesRestaurant($restaurantId) {
+     $restaurant = Restaurant::find($restaurantId);
+     $dishes = Dish::where('restaurant_id', $restaurantId)->where('visible', 1)->get();
+     foreach ($dishes as $dish) {
+        $dish->makeHidden(['created_at', 'updated_at']);
+     }
+     return response()->json([
+        'success' => true,
+        'restaurant' => $restaurant->name,
+        'dishes' => $dishes,
+    ]);
+
     }
 }

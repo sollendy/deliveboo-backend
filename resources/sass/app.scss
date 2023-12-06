@@ -70,6 +70,16 @@
         top: 55%;
         transform: translate(-15%,90%);
         position: absolute;
+        &:hover a{
+          color: black;
+        }
+
+        a{
+          color: white;
+          &:hover{
+            color: black;
+          }
+        }
       }
 
       .button-add{
@@ -262,4 +272,58 @@
   .card__btn:hover .onhover {
     color:white!important;
     }
+}
+
+.dashboard-container{
+
+  .card__btn {
+    margin-top: 15px;
+    width: 200px;
+    height: 50px;
+    font-size: 1rem;
+    border: 4px solid black;
+    border-radius: 4px;
+    font-weight: 700;
+    color: black;
+    background: white;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .card__btn-solid {
+    background: black;
+    color: white;
+  }
+
+  .card__btn:hover {
+    background: black;
+    color: white;
+  }
+
+  .card__btn-solid:hover {
+    background: white;
+    color: black;
+  }
+
+  .card__btn:hover .onhover {
+    color:white!important;
+    }
+
+
+  .side-bar{
+    height: calc(100vh - 115px);
+  }
+
+  .dashboard{
+    height: calc(100vh - 115px);
+  }
+  
+  .owner-image{
+    height: 100px;
+  }
+  .logo-footer{
+    filter: invert(1);
+    height: 35px;
+    margin-bottom: 0.5rem;
+  }
 }

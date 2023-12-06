@@ -24,12 +24,12 @@ class GuestController extends Controller
     }
 
     public function typologies(){
-        
-        $typologies = Type::all();
 
+        $typologies = Type::all();
+        $typologies->makeHidden(['created_at', 'updated_at']);
         return response()->json([
             'success' => true,
-            'results' => $typologies,
+            'types' => $typologies,
         ]);
     }
 }

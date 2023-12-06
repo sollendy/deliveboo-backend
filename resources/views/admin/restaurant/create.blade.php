@@ -11,6 +11,9 @@
                     <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 
+
+
+
                         <div class="row mb-3">
                             <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Nome utente') }}</label>
 
@@ -24,6 +27,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
 
                         <div class="row mb-3">
@@ -84,6 +88,25 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="types" class="col-md-4 col-form-label text-md-end">{{ __('Categorie') }}</label>
+
+                            <div class="col-md-6">
+                                <select @error('types') is-invalid @enderror" multiple multiselect-search="true" id="types">
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Barbecue</option>
+                                  </select>
+
+
+                                @error('types')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Indirizzo email') }}</label>
 
                             <div class="col-md-6">
@@ -132,4 +155,6 @@
         </div>
     </div>
 </div>
+
+@vite(['resources/js/multi-select.js'])
 @endsection

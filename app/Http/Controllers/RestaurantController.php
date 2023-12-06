@@ -57,6 +57,7 @@ class RestaurantController extends Controller
         $newRestaurant->piva = $request->validated('piva');
         $newRestaurant->photo = $photoPath;
         $newRestaurant->save();
+        $newRestaurant->types()->attach($request->types);
         Auth::login($newUser);
         return redirect()->route('admin.restaurant.index');
 

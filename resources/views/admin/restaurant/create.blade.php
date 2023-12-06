@@ -91,10 +91,11 @@
                             <label for="types" class="col-md-4 col-form-label text-md-end">{{ __('Categorie') }}</label>
 
                             <div class="col-md-6">
-                                <select @error('types') is-invalid @enderror" multiple multiselect-search="true" id="types">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Barbecue</option>
+                                <select @error('types') is-invalid @enderror name="types[]" multiple multiselect-search="true" id="types">
+                                    @foreach ($types as $type)
+
+                                    <option value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
                                   </select>
 
 

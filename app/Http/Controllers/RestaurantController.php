@@ -6,6 +6,7 @@ use App\Models\Restaurant;
 use App\Models\Dish;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Type;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view("admin.restaurant.create");
+        $types = Type::all();
+        return view("admin.restaurant.create", compact("types"));
     }
 
     /**

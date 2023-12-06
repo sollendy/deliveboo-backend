@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("/restaurants", [GuestController::class, 'index'])->name('restaurant.index');
+Route::get("/types", [GuestController::class, 'typologies'])->name('typologies.index');
+
     // Route::get('/posts', [ApiPostController::class, 'index'])->name('api.posts.index');
     // Route::get('/posts/{post}', [ApiPostController::class, 'show'])->name('api.posts.show');
     // Route::post('/contact-form', [ApiLeadController::class, 'store'])->name('api.contact-form');

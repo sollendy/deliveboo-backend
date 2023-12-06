@@ -4,7 +4,7 @@ return [
 
     ["name" => "Italiana"],
     ["name" => "Messicana"],
-    ["name" => "Americana"],
+    ["name" => "Pollo"],
     ["name" => "Giapponese"],
     ["name" => "Cinese"],
     ["name" => "Fastfood"],

@@ -14,9 +14,11 @@
             <p>
                 Nome Ristorante: {{ $single_restaurant->name }}
             </p>
+            @foreach ($single_restaurant->types as $type)
             <p>
-                Cucina: {{ $single_restaurant->name }}
+                Cucina: {{ $type->name }}
             </p>
+            @endforeach
             <p>
                 Indrizzo: {{ $single_restaurant->address }}
             </p>

@@ -75,7 +75,7 @@ class RestaurantController extends Controller
     public function show($id)
     {
         $user_id = Auth::user()->id;
-        $restaurant = Restaurant::where("user_id", $user_id)->with("dishes")->get();
+        $restaurant = Restaurant::where("user_id", $user_id)->with("types")->get();
         return view('admin.restaurant.dashboard', compact("user_id","restaurant"));
     }
 

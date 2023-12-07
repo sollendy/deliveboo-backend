@@ -54,7 +54,7 @@ class GuestController extends Controller
     }
 
     public function infoRestaurant($restaurantId) {
-        $restaurant = Restaurant::with('types')->find( $restaurantId );
+        $restaurant = Restaurant::with(['types', 'dishes'])->find( $restaurantId );
         return response()->json([
             'success' => true,
             'restaurant' => $restaurant

@@ -19,6 +19,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                /* padding: 0 25px; */
             }
             .nav .logo {
                 height: 60px;
@@ -58,7 +59,7 @@
     <body>
         <div>
             @if (Route::has('login'))
-            <div class="nav position-sticky bg-light top-0 shadow-lg p-6 text-right z-10">
+            <div class="nav position-sticky bg-light top-0 px-5 shadow-lg p-6 text-right z-10">
                 <img class="logo d-none d-md-block" src="{{ asset('img/logo_deliveboo-01.png') }}" alt="logo-deliveboo">
                 <img class="logo d-md-none" src="{{ asset('img/logo_deliveboo-03.png') }}" alt="logo-deliveboo">
                 @auth

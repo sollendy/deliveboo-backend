@@ -10,11 +10,11 @@ use App\Models\Type;
 
 class GuestController extends Controller
 {
-    public function index(Request $request) {
-        if ($request->has('search')){
+    public function index(Request $request)
+    {
+        if ($request->has('search')) {
             $restaurants = Restaurant::with('types')->where('name', 'LIKE', '%' . $request->search . '%')->paginate(20);
-        }
-        else{
+        } else {
             $restaurants = Restaurant::with(['types'])->paginate(20);
         }
 
@@ -22,12 +22,13 @@ class GuestController extends Controller
             $restaurant->makeHidden(['created_at', 'updated_at', 'user_id']);
         }
         return response()->json([
-            'success'=>true,
-            'results'=>$restaurants,
+            'success' => true,
+            'results' => $restaurants,
         ]);
     }
 
-    public function typologies(){
+    public function typologies()
+    {
 
         $typologies = Type::all();
         $typologies->makeHidden(['created_at', 'updated_at']);
@@ -37,24 +38,26 @@ class GuestController extends Controller
         ]);
     }
 
-    public function dishesRestaurant($restaurantId) {
-     $restaurant = Restaurant::find($restaurantId);
-     $dishes = Dish::where('restaurant_id', $restaurantId)->where('visible', 1)->get();
-     foreach ($dishes as $dish) {
-        $dish->makeHidden(['created_at', 'updated_at']);
-     }
-     return response()->json([
-        'success' => true,
-        'restaurant' => $restaurant->name,
-        'dishes' => $dishes,
-    ]);
-
-
-
+    public function dishesRestaurant($restaurantId)
+    {
+        $restaurant = Restaurant::find($restaurantId);
+        $dishes = Dish::where('restaurant_id', $restaurantId)->where('visible', 1)->get();
+        foreach ($dishes as $dish) {
+            $dish->makeHidden(['created_at', 'updated_at']);
+        }
+        return response()->json([
+            'success' => true,
+            'restaurant' => $restaurant->name,
+            'dishes' => $dishes,
+        ]);
     }
 
-    public function infoRestaurant($restaurantId) {
-        $restaurant = Restaurant::with(['types', 'dishes'])->find( $restaurantId );
+    public function infoRestaurant($restaurantId)
+    {
+        $restaurant = Restaurant::with(['types', 'dishes' => function ($query) {
+            $query->where('visible', 1);
+        }])->find($restaurantId);
+
         return response()->json([
             'success' => true,
             'restaurant' => $restaurant

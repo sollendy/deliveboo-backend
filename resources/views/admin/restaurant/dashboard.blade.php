@@ -9,25 +9,25 @@
 
         <div class="side-bar d-none d-md-block col-md-2 col-lg-2 bg-primary text-white">
             <h5 class="pt-5">Gestore Ristorante {{Auth::user()->name}}</h5>
-            @foreach($restaurant as $single_restaurant)
-            <img class="owner-image" src="{{ $single_restaurant->photo }}" alt="">
+            @foreach($restaurants as $restaurant)
+            <img class="owner-image" src="{{ $restaurant->photo }}" alt="">
             <p>
-                Nome Ristorante: {{ $single_restaurant->name }}
+                Nome Ristorante: {{ $restaurant->name }}
             </p>
             <div class="types">
                 Tipologia: 
-                @foreach ($single_restaurant->types as $type)
+                @foreach ($restaurant->types as $type)
             <span class="">
                 {{ $type->name }}
             </span>
             @endforeach
             </div>
             <p>
-                Indrizzo: {{ $single_restaurant->address }}
+                Indrizzo: {{ $restaurant->address }}
             </p>
             @endforeach
             <button class="card__btn">
-                <a class='text-decoration-none text-black onhover' href="#">
+                <a class='text-decoration-none text-black onhover' href="{{ route('admin.restaurant.editAccount', $restaurant->id) }}">
                     Modifica
                 </a>
             </button>
@@ -42,7 +42,7 @@
             <h1 class="text-black">Dashboard</h1>
             <div class="row">
 
-                <div class="col-md-9">
+                <div class="col-md-9 mb-4">
                     <!-- GRAFICO -->
                     <canvas id="myChart" class="bg-transparent rounded mb-3 p-4" height="160">
                                         

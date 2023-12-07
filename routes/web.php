@@ -36,5 +36,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::put('/update/{id}', [DishController::class, 'update'])->name('restaurant.update');
     Route::delete('/{id}', [DishController::class, 'destroy'])->name('restaurant.destroy');
     Route::get('/dashboard/{id}', [RestaurantController::class, 'show'])->name('restaurant.dashboard');
+    Route::get('/editAccount/{id}', [RestaurantController::class, 'edit'])->name('restaurant.editAccount');
+    Route::put('/editAccount/update/{id}', [RestaurantController::class, 'update'])->name('restaurant.account.update');
     /// commento
 });

@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://fonts.bunny.net/css?family=figtree:400,600&display=swap");
 
 // Variables
 @import 'variables';
@@ -262,4 +263,8 @@
   .card__btn:hover .onhover {
     color:white!important;
     }
+}
+
+.titolone {
+  font-family: figtree, sans-serif;
 }

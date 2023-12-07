@@ -80,7 +80,7 @@
 
                 </div>
                 <div class="testo">
-                    <h1 class="titolone text-light">La piattaforma per chi vuole cancellare ogni limite alla tua cucina!</h1>
+                    <h1 class="titolone text-light">La piattaforma per cancellare ogni limite alla tua cucina!</h1>
                 </div>
             </div>
             {{-- <div class="max-w-7xl mx-auto p-6 lg:p-8">

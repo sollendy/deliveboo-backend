@@ -21,7 +21,9 @@ class RestaurantController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $restaurant = Restaurant::where("user_id", $user_id)->with("dishes")->get();
+        $restaurant = Restaurant::where("user_id", $user_id)->with(["dishes" => function ($query) {
+            $query->orderBy("name", "asc");
+        }])->get();
         return view("admin.restaurant.index", compact("restaurant"));
     }
 

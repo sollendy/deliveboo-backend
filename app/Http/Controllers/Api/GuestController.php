@@ -12,20 +12,30 @@ class GuestController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->has('search')) {
-            $restaurants = Restaurant::with('types')->where('name', 'LIKE', '%' . $request->search . '%')->paginate(20);
-        } else {
-            $restaurants = Restaurant::with(['types'])->paginate(20);
-        }
+        $query = Restaurant::with(['types']);
+        //Se ha types e non è null
+    if ($request->has('types') && $request->input('types') != null) {
+        $types = $request->input('types');
+        //Crea array dall stringa virgolettata
+        $typesArray = explode(',', $types);
 
-        foreach ($restaurants as $restaurant) {
-            $restaurant->makeHidden(['created_at', 'updated_at', 'user_id']);
-        }
-        return response()->json([
-            'success' => true,
-            'results' => $restaurants,
-        ]);
+        // Filtra i ristoranti in base all'array fornito e ritorna solo se li ha tutti
+        $query->whereHas('types', function ($query) use ($typesArray) {
+            $query->whereIn('name', $typesArray);
+        }, '=', count($typesArray));
     }
+
+    $restaurants = $query->paginate(20);
+
+    foreach ($restaurants as $restaurant) {
+        $restaurant->makeHidden(['created_at', 'updated_at', 'user_id']);
+    }
+
+    return response()->json([
+        'success' => true,
+        'results' => $restaurants,
+    ]);
+}
 
     public function typologies()
     {

@@ -23,6 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("/restaurants", [GuestController::class, 'index'])->name('restaurant.index');
 Route::get("/types", [GuestController::class, 'typologies'])->name('typologies.index');
 Route::get("/restaurant/{restaurantId}/dishes", [GuestController::class, 'dishesRestaurant'])->name('dishes.show');
+Route::get("/restaurant/{restaurantId}", [GuestController::class, 'infoRestaurant'])->name('restaurant.show');
+
+
 
 
     // Route::get('/posts', [ApiPostController::class, 'index'])->name('api.posts.index');

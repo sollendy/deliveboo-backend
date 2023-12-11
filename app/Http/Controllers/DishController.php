@@ -91,6 +91,11 @@ class DishController extends Controller
         }
 
         $dish->update($data);
+        if ($request->hasFile('image')) {
+            $photoPath = asset('storage') . '/' . Storage::disk('public')->put('uploads', $request->validated('image'));
+            $dish->image = $photoPath;
+            $dish->save();
+        }
         return redirect()->route('admin.restaurant.index')->with('update',  $dish->name);
     }
 

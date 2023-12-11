@@ -63,7 +63,7 @@
                 <img class="logo d-none d-md-block" src="{{ asset('img/logo_deliveboo-01.png') }}" alt="logo-deliveboo">
                 <img class="logo d-md-none" src="{{ asset('img/logo_deliveboo-03.png') }}" alt="logo-deliveboo">
                 @auth
-                    <a href="{{ url('/home') }}" class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                    <a href="{{ url('/admin') }}" class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
                 @else
                     <div class="a-container">
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>

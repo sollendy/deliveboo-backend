@@ -17,12 +17,13 @@ class DishSeeder extends Seeder
 
         foreach($dishes as $dish) {
             $newDish = new Dish();
-            
+
             $newDish->restaurant_id = $dish["restaurant_id"];
             $newDish->name = $dish["name"];
             $newDish->description = $dish["description"];
             $newDish->ingredients = $dish["ingredients"];
-            $newDish->visible = rand(0, 1);
+            $newDish->image = $dish['image'];
+            $newDish->visible = 1;
             $newDish->price = $dish["price"];
             $newDish->save();
         }

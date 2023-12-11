@@ -18,7 +18,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin.restaurant.store') }}" method="POST">
+                <form action="{{ route('admin.restaurant.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
 
                     <div class="row">
@@ -33,6 +33,14 @@
                                 <input type="text" name="name" class="form-control mb-4" placeholder="Nome Piatto" required minlength="5" maxlength="100">
                                 <textarea name="description" id="description" class="mb-4 w-100" cols="30" rows="10" minlength="10" placeholder="Descrizione"></textarea>
                                 <input type="text" name="ingredients" class="form-control mb-4" placeholder="Ingredienti" required minlength="10">
+                                <label for="image" class="text-white fs-4">Immagine</label>
+                                <input id="image" type="file" class="form-control mb-2 @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus>
+
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <label for="visible" class="ms-1 mb-4 text-white">Visibilita'</label>
                                 <input type="checkbox" id="visible" name="visible" placeholder="Visibilita'">
                                 <input type="number" name="price" class="form-control" min="0" value="0.00" step="0.01" placeholder="Prezzo" required>

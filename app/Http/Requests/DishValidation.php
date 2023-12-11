@@ -27,6 +27,8 @@ class DishValidation extends FormRequest
             'ingredients' => 'required|min:3',
             'visible' => 'nullable',
             'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image',
+
         ];
     }
 
@@ -40,7 +42,8 @@ class DishValidation extends FormRequest
             'price.min' => 'Il prezzo deve essere almeno :min.',
             'price.decimal' => "Il prezzo è in formato errato",
             'ingredients.required' => 'Devi inserire almeno un ingrediente',
-            'ingredients.min' => "Il campo ingredienti deve essere almeno di :min caratteri"
+            'ingredients.min' => "Il campo ingredienti deve essere almeno di :min caratteri",
+            'image.image' => 'Sono accettati solo file immagini'
         ];
     }
 }

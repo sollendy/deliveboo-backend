@@ -7,6 +7,7 @@ use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DishValidation;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateDishValidation;
 
 class DishController extends Controller
@@ -43,6 +44,9 @@ class DishController extends Controller
         else {
             $newDish->visible = 0;
         }
+        $photoPath = asset('storage') . '/' . Storage::disk('public')->put('uploads', $request->validated('image'));
+        $newDish->image = $photoPath;
+
         $user_id = Auth::user()->id;
         $restaurant = Restaurant::where("user_id", $user_id)->first();
         $newDish->restaurant_id = $restaurant->id;
@@ -87,6 +91,11 @@ class DishController extends Controller
         }
 
         $dish->update($data);
+        if ($request->hasFile('image')) {
+            $photoPath = asset('storage') . '/' . Storage::disk('public')->put('uploads', $request->validated('image'));
+            $dish->image = $photoPath;
+            $dish->save();
+        }
         return redirect()->route('admin.restaurant.index')->with('update',  $dish->name);
     }
 

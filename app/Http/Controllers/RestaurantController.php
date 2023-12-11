@@ -86,6 +86,7 @@ class RestaurantController extends Controller
     {
         $user_id = Auth::user()->id;
         $restaurants = Restaurant::where("user_id", $user_id)->with("types")->get();
+        // dd($restaurants[0]->types());
         $list_types = Type::all();
         return view('admin.restaurant.editAccount', compact("user_id","restaurants","list_types"));
     }

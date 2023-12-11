@@ -40,24 +40,17 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <select @error('types') is-invalid @enderror name="types[]" multiple multiselect-search="true" id="types">
                                     @foreach($list_types as $type)
-                                        <div class="form-check">
-                                            <input
-                                                type="checkbox"
-                                                name="types[]"
-                                                value="{{ $type->id }}"
-                                                id="type{{ $type->id }}"
-                                                @if(in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray())))
-                                                    checked
-                                                @endif
-                                            >
-                                            <label for="type{{ $type->id }}" class="form-check-label text-white">
-                                                {{ $type->name }}
-                                            </label>
-                                        </div>
+                                    <option value="{{$type->id}}"    @foreach($restaurants[0]->types()->get() as $type_check)
+                                           @if($type_check->id === $type->id) selected @endif 
+                                        @endforeach>
+                                        {{$type->name}}
+                                    </option>
                                     @endforeach
+                                  </select>
                                 </div>
-                            </div>
+                        </div>
 
 
                                     @endforeach
@@ -74,5 +67,8 @@
             </div>
         </div>
     </div>
+
+
+    @vite(['resources/js/multi-select.js'])
 
 @endsection

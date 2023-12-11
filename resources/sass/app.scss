@@ -14,7 +14,7 @@
 }
 
 .restaurant-container{
-  
+
     .card {
         --main-color: #000;
         --submain-color: #78858F;
@@ -321,7 +321,7 @@
   .dashboard{
     height: calc(100vh - 115px);
   }
-  
+
   .owner-image{
     height: 100px;
   }
@@ -330,4 +330,8 @@
     height: 35px;
     margin-bottom: 0.5rem;
   }
+}
+
+.width-200 {
+    width: 200px;
 }

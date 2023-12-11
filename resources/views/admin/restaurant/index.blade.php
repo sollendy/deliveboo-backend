@@ -35,7 +35,11 @@
                             Aggiungi Piatto
                         </a>
                     </button>
-                    <button class="card__btn card__btn-solid button-detail">Dettagli</button>
+                    <button class="card__btn card__btn-solid button-detail">
+                        <a class="text-decoration-none" href="{{ route('admin.restaurant.dashboard', $single_restaurant->id) }}">
+                            Dettagli
+                        </a>
+                    </button>
                 </div>
             </div>
         @endforeach

@@ -26,19 +26,29 @@ class PaymentController extends Controller
             ]
         ]);
 
+        function saveOrder($newOrder, $request)
+        {
+            $newOrder->save();
+            foreach ($request->products as $dish) {
+                $newOrder->dishes()->attach([$dish['id'] => ['quantity' => $dish['qty']]]);
+            }
+        }
+
         $newOrder = new Order();
         $newOrder->name = $request->name;
         $newOrder->last_name = $request->last_name;
         $newOrder->address = $request->address;
         $newOrder->phone = $request->phone;
-        $newOrder->total_price = $request->total_price;
+        $newOrder->total_price = $request->amount;
         //Implementare order_dishes
 
-        if ($status->success) {
+        if ($status) { //if status true
             $newOrder->status = 1;
+            saveOrder( $newOrder, $request );
             return response()->json(['success' => true]);
         } else {
             $newOrder->status = 0;
+            saveOrder( $newOrder, $request );
             return response()->json(['success' => false]);
         }
     }

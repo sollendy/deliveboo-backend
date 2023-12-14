@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Restaurant;
 
 class OrderController extends Controller
 {
@@ -12,7 +14,28 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+
+        $restaurants = Restaurant::where("user_id", $user_id)->with(["types", "dishes"])->get();
+        $orders = [];
+        $idAdded = [];
+       //Non avendo implementato ID del ristorante da cui si ordina in front-end,
+       //recupero tutti i piatti del mio ristorante
+       //e di loro gli ordini associati
+       //salvo quell'ordine nell'array degli ordini, se non l'ho già aggiunto precedentemente per altri piatti
+        foreach ($restaurants[0]->dishes as $dish) {
+            $ordersOfDish = $dish->orders()->with('dishes')->orderBy('created_at', 'desc')->get();
+            foreach($ordersOfDish as $orderOfDish) {
+                if (!in_array($orderOfDish->id, $idAdded)) {
+                array_push($orders, $orderOfDish);
+                array_push($idAdded, $orderOfDish->id);
+                }
+            }
+        }
+
+
+        return view('admin.restaurant.orders', compact('restaurants', 'orders'));
+
     }
 
     /**

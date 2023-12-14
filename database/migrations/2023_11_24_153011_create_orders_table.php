@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->boolean('status');
             $table->decimal('total_price', 10, 2);
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
 
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RestaurantController;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/edit/{id}', [DishController::class, 'edit'])->name('restaurant.edit');
     Route::put('/update/{id}', [DishController::class, 'update'])->name('restaurant.update');
     Route::delete('/{id}', [DishController::class, 'destroy'])->name('restaurant.destroy');
-    Route::get('/dashboard/{id}', [RestaurantController::class, 'show'])->name('restaurant.dashboard');
+    Route::get('/dashboard/{id}', [RestaurantController::class, 'show'])->name('restaurant.dashboard'); //?? id?
     Route::get('/editAccount/{id}', [RestaurantController::class, 'edit'])->name('restaurant.editAccount');
     Route::put('/editAccount/update/{id}', [RestaurantController::class, 'update'])->name('restaurant.account.update');
+    Route::get('/orders', [OrderController::class, 'index'])->name('restaurant.orders');
+
     /// commento
 });

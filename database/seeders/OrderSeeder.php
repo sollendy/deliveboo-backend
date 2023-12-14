@@ -22,7 +22,7 @@ class OrderSeeder extends Seeder
             $newOrder->address = $order['address'];
             $newOrder->phone = $order['phone'];
             $newOrder->status = rand(0,1);
-            $newOrder->total_price = 1;
+            $newOrder->total_price = $order['total_price'];
             $newOrder->save();
 
 

@@ -15,7 +15,7 @@
                 Nome Ristorante: {{ $restaurant->name }}
             </p>
             <div class="types">
-                Tipologia: 
+                Tipologia:
                 @foreach ($restaurant->types as $type)
             <span class="">
                 {{ $type->name }}
@@ -29,6 +29,11 @@
             <button class="card__btn">
                 <a class='text-decoration-none text-black onhover' href="{{ route('admin.restaurant.editAccount', $restaurant->id) }}">
                     Modifica
+                </a>
+            </button>
+            <button class="card__btn">
+                <a class='text-decoration-none text-black onhover' href="{{ route('admin.restaurant.orders') }}">
+                    Lista ordini
                 </a>
             </button>
         </div>
@@ -45,7 +50,7 @@
                 <div class="col-md-9 mb-4">
                     <!-- GRAFICO -->
                     <canvas id="myChart" class="bg-transparent rounded mb-3 p-4" height="160">
-                                        
+
                    </canvas>
 
                    <div class="col-md-3">
